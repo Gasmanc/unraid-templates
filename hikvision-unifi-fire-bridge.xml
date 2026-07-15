@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<Container version="2">
+  <Name>hikvision-unifi-fire-bridge</Name>
+  <Repository>ghcr.io/gasmanc/hikvision-unifi-fire-bridge:0.1.0</Repository>
+  <Registry>https://github.com/Gasmanc/hikvision-unifi-fire-bridge/pkgs/container/hikvision-unifi-fire-bridge</Registry>
+  <Network>bridge</Network>
+  <Shell>sh</Shell>
+  <Privileged>false</Privileged>
+  <Support>https://github.com/Gasmanc/hikvision-unifi-fire-bridge/issues</Support>
+  <Project>https://github.com/Gasmanc/hikvision-unifi-fire-bridge</Project>
+  <Overview>Bridges Hikvision (thermal) camera fire-detection events into a UniFi Protect Alarm Manager incoming webhook: camera fire alarm -> Protect siren / priority push notification / any Alarm Manager action. Fail-loud design: re-alerts while the fire stays active, proactive Protect path probe, strict TLS.&#10;&#10;NOT certified life-safety equipment. This tool is not a substitute for compliant smoke alarms, fire panels, or emergency procedures, and carries no safety certification of any kind. Use at your own risk in addition to, never instead of, properly certified fire detection.</Overview>
+  <Category>Tools: HomeAutomation: Security:</Category>
+  <WebUI>http://[IP]:[PORT:8080]/status</WebUI>
+  <TemplateURL>https://raw.githubusercontent.com/Gasmanc/unraid-templates/main/hikvision-unifi-fire-bridge.xml</TemplateURL>
+  <Icon>https://raw.githubusercontent.com/Gasmanc/unraid-templates/main/images/hikvision-unifi-fire-bridge.png</Icon>
+  <ExtraParams>--restart unless-stopped --read-only --tmpfs /tmp:rw,noexec,nosuid,size=16m --cap-drop ALL --security-opt no-new-privileges:true</ExtraParams>
+  <PostArgs/>
+  <DonateText/>
+  <DonateLink/>
+  <Requires>A Hikvision camera exposing the ISAPI alert stream, and UniFi Protect with an Alarm Manager incoming webhook + API key. The Protect host must present a valid TLS certificate.</Requires>
+
+  <Config Name="Health port" Target="8080" Default="8080" Mode="tcp" Description="Health/readiness/status HTTP port." Type="Port" Display="always" Required="true" Mask="false">8080</Config>
+
+  <Config Name="Hikvision host" Target="HIKVISION_HOST" Default="" Mode="" Description="Camera IP or hostname (optionally host:port)." Type="Variable" Display="always" Required="true" Mask="false"/>
+  <Config Name="Hikvision user" Target="HIKVISION_USER" Default="hik-operator" Mode="" Description="Restricted camera account (event/ISAPI read only)." Type="Variable" Display="always" Required="true" Mask="false">hik-operator</Config>
+  <Config Name="Hikvision password" Target="HIKVISION_PASS" Default="" Mode="" Description="Camera account password." Type="Variable" Display="always" Required="true" Mask="true"/>
+  <Config Name="Hikvision scheme" Target="HIKVISION_SCHEME" Default="http" Mode="" Description="http or https toward the camera." Type="Variable" Display="advanced" Required="false" Mask="false">http</Config>
+
+  <Config Name="Protect base URL" Target="PROTECT_BASE_URL" Default="" Mode="" Description="HTTPS URL of the UNVR running Protect (certificate-valid hostname, e.g. https://unvr.example.com)." Type="Variable" Display="always" Required="true" Mask="false"/>
+  <Config Name="Protect webhook ID" Target="PROTECT_WEBHOOK_ID" Default="" Mode="" Description="Alarm Manager incoming-webhook ID." Type="Variable" Display="always" Required="true" Mask="true"/>
+  <Config Name="Protect API key" Target="PROTECT_API_KEY" Default="" Mode="" Description="Minimum-scope Protect integration API key (sent as X-API-Key)." Type="Variable" Display="always" Required="true" Mask="true"/>
+  <Config Name="Protect webhook URL override" Target="PROTECT_WEBHOOK_URL" Default="" Mode="" Description="Optional full webhook URL; replaces base URL + webhook ID if your Protect version uses a different path." Type="Variable" Display="advanced" Required="false" Mask="true"/>
+
+  <Config Name="Fire event types" Target="FIRE_EVENT_TYPES" Default="" Mode="" Description="Comma-separated eventType values treated as fire (case-insensitive). Empty = fireDetection,fire_detection,fireAlarm." Type="Variable" Display="advanced" Required="false" Mask="false"/>
+  <Config Name="Fire cooldown seconds" Target="FIRE_COOLDOWN_SECONDS" Default="60" Mode="" Description="Minimum gap between edge-trigger alerts per source." Type="Variable" Display="advanced" Required="false" Mask="false">60</Config>
+  <Config Name="Re-alert seconds" Target="FIRE_REALERT_SECONDS" Default="60" Mode="" Description="Re-alert interval while a fire stays active; 0 disables re-alerting." Type="Variable" Display="advanced" Required="false" Mask="false">60</Config>
+  <Config Name="Active TTL seconds" Target="FIRE_ACTIVE_TTL_SECONDS" Default="300" Mode="" Description="Active state expires after this many seconds of silence (anti-latch safety)." Type="Variable" Display="advanced" Required="false" Mask="false">300</Config>
+  <Config Name="Protect probe seconds" Target="PROTECT_PROBE_SECONDS" Default="60" Mode="" Description="Protect reachability probe interval; 0 disables." Type="Variable" Display="advanced" Required="false" Mask="false">60</Config>
+  <Config Name="Stream idle timeout" Target="STREAM_IDLE_TIMEOUT_SECONDS" Default="90" Mode="" Description="Reconnect when the camera stream is silent this long." Type="Variable" Display="advanced" Required="false" Mask="false">90</Config>
+  <Config Name="Webhook timeout" Target="WEBHOOK_TIMEOUT_SECONDS" Default="5" Mode="" Description="Per-attempt Protect request timeout." Type="Variable" Display="advanced" Required="false" Mask="false">5</Config>
+  <Config Name="Webhook attempts" Target="WEBHOOK_ATTEMPTS" Default="3" Mode="" Description="Delivery attempts (permanent 4xx not retried)." Type="Variable" Display="advanced" Required="false" Mask="false">3</Config>
+  <Config Name="Log level" Target="RUST_LOG" Default="info" Mode="" Description="Tracing filter (error, warn, info, debug)." Type="Variable" Display="advanced" Required="false" Mask="false">info</Config>
+</Container>
