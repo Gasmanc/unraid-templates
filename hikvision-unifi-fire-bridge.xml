@@ -12,7 +12,7 @@
   <Category>Tools: HomeAutomation: Security:</Category>
   <WebUI>http://[IP]:[PORT:8080]/status</WebUI>
   <TemplateURL>https://raw.githubusercontent.com/Gasmanc/unraid-templates/main/hikvision-unifi-fire-bridge.xml</TemplateURL>
-  <Icon>https://raw.githubusercontent.com/Gasmanc/unraid-templates/main/images/hikvision-unifi-fire-bridge.png</Icon>
+  <Icon>https://raw.githubusercontent.com/Gasmanc/unraid-templates/main/images/hikvision-unifi-fire-bridge.svg</Icon>
   <ExtraParams>--restart unless-stopped --read-only --tmpfs /tmp:rw,noexec,nosuid,size=16m --cap-drop ALL --security-opt no-new-privileges:true</ExtraParams>
   <PostArgs/>
   <DonateText/>
