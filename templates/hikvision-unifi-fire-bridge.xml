@@ -2,22 +2,26 @@
 <Container version="2">
   <Name>hikvision-unifi-fire-bridge</Name>
   <Repository>ghcr.io/gasmanc/hikvision-unifi-fire-bridge:0.1.0</Repository>
-  <Registry>https://github.com/Gasmanc/hikvision-unifi-fire-bridge/pkgs/container/hikvision-unifi-fire-bridge</Registry>
+  <Registry>https://ghcr.io/gasmanc/hikvision-unifi-fire-bridge</Registry>
   <Network>bridge</Network>
   <Shell>sh</Shell>
   <Privileged>false</Privileged>
+  <Icon>https://raw.githubusercontent.com/Gasmanc/unraid-templates/main/images/hikvision-unifi-fire-bridge.svg</Icon>
+  <WebUI>http://[IP]:[PORT:8080]/status</WebUI>
+  <Overview>Bridges Hikvision (thermal) camera fire-detection events into a UniFi Protect Alarm Manager incoming webhook: camera fire alarm -> Protect siren / priority push notification / any Alarm Manager action. Fail-loud design: re-alerts while the fire stays active, proactive Protect path probe, strict TLS.&#10;&#10;NOT certified life-safety equipment. This tool is not a substitute for compliant smoke alarms, fire panels, or emergency procedures, and carries no safety certification of any kind. Use at your own risk in addition to, never instead of, properly certified fire detection.</Overview>
   <Support>https://github.com/Gasmanc/hikvision-unifi-fire-bridge/issues</Support>
   <Project>https://github.com/Gasmanc/hikvision-unifi-fire-bridge</Project>
-  <Overview>Bridges Hikvision (thermal) camera fire-detection events into a UniFi Protect Alarm Manager incoming webhook: camera fire alarm -> Protect siren / priority push notification / any Alarm Manager action. Fail-loud design: re-alerts while the fire stays active, proactive Protect path probe, strict TLS.&#10;&#10;NOT certified life-safety equipment. This tool is not a substitute for compliant smoke alarms, fire panels, or emergency procedures, and carries no safety certification of any kind. Use at your own risk in addition to, never instead of, properly certified fire detection.</Overview>
-  <Category>Tools: HomeAutomation: Security:</Category>
-  <WebUI>http://[IP]:[PORT:8080]/status</WebUI>
-  <TemplateURL>https://raw.githubusercontent.com/Gasmanc/unraid-templates/main/hikvision-unifi-fire-bridge.xml</TemplateURL>
-  <Icon>https://raw.githubusercontent.com/Gasmanc/unraid-templates/main/images/hikvision-unifi-fire-bridge.svg</Icon>
+  <TemplateURL>https://raw.githubusercontent.com/Gasmanc/unraid-templates/main/templates/hikvision-unifi-fire-bridge.xml</TemplateURL>
+  <ReadMe>https://raw.githubusercontent.com/Gasmanc/hikvision-unifi-fire-bridge/main/README.md</ReadMe>
+  <Category>HomeAutomation: Security:</Category>
+  <ExtraSearchTerms>hikvision unifi protect fire alarm thermal isapi bridge</ExtraSearchTerms>
+  <Requires>A Hikvision camera exposing the ISAPI alert stream, and UniFi Protect with an Alarm Manager incoming webhook + API key. The Protect host must present a valid TLS certificate.</Requires>
+  <MinVer>6.12</MinVer>
+  <License>AGPL-3.0-or-later</License>
   <ExtraParams>--restart unless-stopped --read-only --tmpfs /tmp:rw,noexec,nosuid,size=16m --cap-drop ALL --security-opt no-new-privileges:true</ExtraParams>
   <PostArgs/>
   <DonateText/>
   <DonateLink/>
-  <Requires>A Hikvision camera exposing the ISAPI alert stream, and UniFi Protect with an Alarm Manager incoming webhook + API key. The Protect host must present a valid TLS certificate.</Requires>
 
   <Config Name="Health port" Target="8080" Default="8080" Mode="tcp" Description="Health/readiness/status HTTP port." Type="Port" Display="always" Required="true" Mask="false">8080</Config>
 
