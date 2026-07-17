@@ -1,14 +1,14 @@
 <?xml version="1.0"?>
 <Container version="2">
   <Name>hikvision-unifi-fire-bridge</Name>
-  <Repository>ghcr.io/gasmanc/hikvision-unifi-fire-bridge:0.1.0</Repository>
+  <Repository>ghcr.io/gasmanc/hikvision-unifi-fire-bridge:0.1.1</Repository>
   <Registry>https://ghcr.io/gasmanc/hikvision-unifi-fire-bridge</Registry>
   <Network>bridge</Network>
   <Shell>sh</Shell>
   <Privileged>false</Privileged>
   <Icon>https://raw.githubusercontent.com/Gasmanc/unraid-templates/main/images/hikvision-unifi-fire-bridge.svg</Icon>
   <WebUI>http://[IP]:[PORT:8080]/status</WebUI>
-  <Overview>Bridges Hikvision (thermal) camera fire-detection events into a UniFi Protect Alarm Manager incoming webhook: camera fire alarm -> Protect siren / priority push notification / any Alarm Manager action. Fail-loud design: re-alerts while the fire stays active, proactive Protect path probe, strict TLS.&#10;&#10;NOT certified life-safety equipment. This tool is not a substitute for compliant smoke alarms, fire panels, or emergency procedures, and carries no safety certification of any kind. Use at your own risk in addition to, never instead of, properly certified fire detection.</Overview>
+  <Overview>Bridges a Hikvision thermal camera's fire and Temperature-Measurement-Alarm (TMA) events into a UniFi Protect Alarm Manager webhook - a camera fire alarm can ring a Protect siren, send a priority push, or drive any Alarm Manager action. Fail-loud by design: re-alerts every 60s while the fire stays active, proactively probes the Protect path so a broken webhook surfaces before a fire, and enforces strict TLS.&#10;&#10;NOT certified life-safety equipment: not a substitute for compliant smoke alarms, fire panels, or emergency procedures, and carries no safety certification. Use only in addition to properly certified fire detection, at your own risk.</Overview>
   <Support>https://github.com/Gasmanc/hikvision-unifi-fire-bridge/issues</Support>
   <Project>https://github.com/Gasmanc/hikvision-unifi-fire-bridge</Project>
   <TemplateURL>https://raw.githubusercontent.com/Gasmanc/unraid-templates/main/templates/hikvision-unifi-fire-bridge.xml</TemplateURL>
@@ -26,7 +26,7 @@
   <Config Name="Health port" Target="8080" Default="8080" Mode="tcp" Description="Health/readiness/status HTTP port." Type="Port" Display="always" Required="true" Mask="false">8080</Config>
 
   <Config Name="Hikvision host" Target="HIKVISION_HOST" Default="" Mode="" Description="Camera IP or hostname (optionally host:port)." Type="Variable" Display="always" Required="true" Mask="false"/>
-  <Config Name="Hikvision user" Target="HIKVISION_USER" Default="hik-operator" Mode="" Description="Restricted camera account (event/ISAPI read only)." Type="Variable" Display="always" Required="true" Mask="false">hik-operator</Config>
+  <Config Name="Hikvision user" Target="HIKVISION_USER" Default="" Mode="" Description="Restricted camera account with event/ISAPI read only (e.g. hik-operator)." Type="Variable" Display="always" Required="true" Mask="false"/>
   <Config Name="Hikvision password" Target="HIKVISION_PASS" Default="" Mode="" Description="Camera account password." Type="Variable" Display="always" Required="true" Mask="true"/>
   <Config Name="Hikvision scheme" Target="HIKVISION_SCHEME" Default="http" Mode="" Description="http or https toward the camera." Type="Variable" Display="advanced" Required="false" Mask="false">http</Config>
 
@@ -35,7 +35,7 @@
   <Config Name="Protect API key" Target="PROTECT_API_KEY" Default="" Mode="" Description="Minimum-scope Protect integration API key (sent as X-API-Key)." Type="Variable" Display="always" Required="true" Mask="true"/>
   <Config Name="Protect webhook URL override" Target="PROTECT_WEBHOOK_URL" Default="" Mode="" Description="Optional full webhook URL; replaces base URL + webhook ID if your Protect version uses a different path." Type="Variable" Display="advanced" Required="false" Mask="true"/>
 
-  <Config Name="Fire event types" Target="FIRE_EVENT_TYPES" Default="" Mode="" Description="Comma-separated eventType values treated as fire (case-insensitive). Empty = fireDetection,fire_detection,fireAlarm." Type="Variable" Display="advanced" Required="false" Mask="false"/>
+  <Config Name="Fire event types" Target="FIRE_EVENT_TYPES" Default="" Mode="" Description="Comma-separated eventType values treated as fire (case-insensitive). Empty = TMA,fireDetection,fire_detection,fireAlarm." Type="Variable" Display="advanced" Required="false" Mask="false"/>
   <Config Name="Fire cooldown seconds" Target="FIRE_COOLDOWN_SECONDS" Default="60" Mode="" Description="Minimum gap between edge-trigger alerts per source." Type="Variable" Display="advanced" Required="false" Mask="false">60</Config>
   <Config Name="Re-alert seconds" Target="FIRE_REALERT_SECONDS" Default="60" Mode="" Description="Re-alert interval while a fire stays active; 0 disables re-alerting." Type="Variable" Display="advanced" Required="false" Mask="false">60</Config>
   <Config Name="Active TTL seconds" Target="FIRE_ACTIVE_TTL_SECONDS" Default="300" Mode="" Description="Active state expires after this many seconds of silence (anti-latch safety)." Type="Variable" Display="advanced" Required="false" Mask="false">300</Config>

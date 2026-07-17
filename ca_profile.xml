@@ -1,10 +1,10 @@
 <CommunityApplications>
   <Profile>
-This repository hosts the Unraid Community Applications template for
-**hikvision-unifi-fire-bridge**: a Rust daemon that bridges Hikvision
-thermal-camera fire-detection events into a UniFi Protect Alarm Manager
-incoming webhook (siren, priority push notification, or any other
-Protect-supported action).
+Unraid Community Applications template for **hikvision-unifi-fire-bridge**: a
+Rust daemon that bridges a Hikvision thermal camera's fire and
+Temperature-Measurement-Alarm (TMA) events into a UniFi Protect Alarm Manager
+webhook — siren, priority push, or any other Alarm Manager action. Fail-loud by
+design; not certified life-safety equipment.
 
 Source code, documentation, and support: https://github.com/Gasmanc/hikvision-unifi-fire-bridge
   </Profile>
