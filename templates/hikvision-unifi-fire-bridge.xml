@@ -1,18 +1,18 @@
 <?xml version="1.0"?>
 <Container version="2">
   <Name>hikvision-unifi-fire-bridge</Name>
-  <Repository>ghcr.io/gasmanc/hikvision-unifi-fire-bridge:0.1.1</Repository>
-  <Registry>https://ghcr.io/gasmanc/hikvision-unifi-fire-bridge</Registry>
+  <Repository>ghcr.io/pacman-clyde/hikvision-unifi-fire-bridge:0.1.1</Repository>
+  <Registry>https://ghcr.io/pacman-clyde/hikvision-unifi-fire-bridge</Registry>
   <Network>bridge</Network>
   <Shell>sh</Shell>
   <Privileged>false</Privileged>
-  <Icon>https://raw.githubusercontent.com/Gasmanc/unraid-templates/main/images/hikvision-unifi-fire-bridge.svg</Icon>
+  <Icon>https://raw.githubusercontent.com/Pacman-Clyde/unraid-templates/main/images/hikvision-unifi-fire-bridge.svg</Icon>
   <WebUI>http://[IP]:[PORT:8080]/status</WebUI>
   <Overview>Bridges a Hikvision thermal camera's fire and Temperature-Measurement-Alarm (TMA) events into a UniFi Protect Alarm Manager webhook - a camera fire alarm can ring a Protect siren, send a priority push, or drive any Alarm Manager action. Fail-loud by design: re-alerts every 60s while the fire stays active, proactively probes the Protect path so a broken webhook surfaces before a fire, and enforces strict TLS.&#10;&#10;NOT certified life-safety equipment: not a substitute for compliant smoke alarms, fire panels, or emergency procedures, and carries no safety certification. Use only in addition to properly certified fire detection, at your own risk.</Overview>
-  <Support>https://github.com/Gasmanc/hikvision-unifi-fire-bridge/issues</Support>
-  <Project>https://github.com/Gasmanc/hikvision-unifi-fire-bridge</Project>
-  <TemplateURL>https://raw.githubusercontent.com/Gasmanc/unraid-templates/main/templates/hikvision-unifi-fire-bridge.xml</TemplateURL>
-  <ReadMe>https://raw.githubusercontent.com/Gasmanc/hikvision-unifi-fire-bridge/main/README.md</ReadMe>
+  <Support>https://github.com/Pacman-Clyde/hikvision-unifi-fire-bridge/issues</Support>
+  <Project>https://github.com/Pacman-Clyde/hikvision-unifi-fire-bridge</Project>
+  <TemplateURL>https://raw.githubusercontent.com/Pacman-Clyde/unraid-templates/main/templates/hikvision-unifi-fire-bridge.xml</TemplateURL>
+  <ReadMe>https://raw.githubusercontent.com/Pacman-Clyde/hikvision-unifi-fire-bridge/main/README.md</ReadMe>
   <Category>HomeAutomation: Security:</Category>
   <ExtraSearchTerms>hikvision unifi protect fire alarm thermal isapi bridge</ExtraSearchTerms>
   <Requires>A Hikvision camera exposing the ISAPI alert stream, and UniFi Protect with an Alarm Manager incoming webhook + API key. The Protect host must present a valid TLS certificate.</Requires>
