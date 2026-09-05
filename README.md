@@ -1,7 +1,7 @@
 # unraid-templates
 
 Unraid Community Applications template for
-[hikvision-unifi-fire-bridge](https://github.com/Gasmanc/hikvision-unifi-fire-bridge) —
+[hikvision-unifi-fire-bridge](https://github.com/Pacman-Clyde/hikvision-unifi-fire-bridge) —
 a small Rust daemon that turns a Hikvision thermal camera's fire / temperature
 alarms into a UniFi Protect Alarm Manager action (siren, priority push, etc.).
 
@@ -89,4 +89,4 @@ broken. Re-test end-to-end at least quarterly.
 ---
 
 Application source, full documentation, and issue tracker:
-https://github.com/Gasmanc/hikvision-unifi-fire-bridge
+https://github.com/Pacman-Clyde/hikvision-unifi-fire-bridge
