@@ -6,8 +6,8 @@ Temperature-Measurement-Alarm (TMA) events into a UniFi Protect Alarm Manager
 webhook — siren, priority push, or any other Alarm Manager action. Fail-loud by
 design; not certified life-safety equipment.
 
-Source code, documentation, and support: https://github.com/Gasmanc/hikvision-unifi-fire-bridge
+Source code, documentation, and support: https://github.com/Pacman-Clyde/hikvision-unifi-fire-bridge
   </Profile>
-  <Icon>https://raw.githubusercontent.com/Gasmanc/unraid-templates/main/images/hikvision-unifi-fire-bridge.svg</Icon>
-  <WebPage>https://github.com/Gasmanc/hikvision-unifi-fire-bridge</WebPage>
+  <Icon>https://raw.githubusercontent.com/Pacman-Clyde/unraid-templates/main/images/hikvision-unifi-fire-bridge.svg</Icon>
+  <WebPage>https://github.com/Pacman-Clyde/hikvision-unifi-fire-bridge</WebPage>
 </CommunityApplications>
